@@ -6,6 +6,11 @@ public class HardObstacle : Obstacle {
 
     private float _lastTimeShot;
 
+    //BulletStats
+    private int _bulletSpeed = 8;
+    private int _bulletDmg = 1;
+    private Bullet.BulletType _bulletType = Bullet.BulletType.Hostile;
+
     protected override void Awake()
     {
         base.Awake();
@@ -30,7 +35,7 @@ public class HardObstacle : Obstacle {
 
     private void Shoot()
     {
-        Bullet.InstantiateBullet(transform.position + Vector3.up, transform.forward, _levelManager.CurSpeed + 7, 1, Bullet.BulletType.hostile);
+        Bullet.InstantiateBullet(transform.position + Vector3.up, transform.forward, _levelManager.CurSpeed + _bulletSpeed, _bulletDmg, _bulletType);
     }
 
 }

@@ -5,16 +5,17 @@ using UnityEngine;
 public class Bullet : MonoBehaviour, IDamagable
 {
 
-    private Vector3 _dir;
     private float _speed;
     private int _dmg;
     private BulletType _bulletType;
+
+    private Vector3 _dir;
     private Renderer _myRenderer;
 
     public enum BulletType
     {
-        hostile = 0,
-        friendly = 1
+        Hostile = 0,
+        Friendly = 1
     }
 
     /// <summary>
@@ -78,15 +79,15 @@ public class Bullet : MonoBehaviour, IDamagable
         set
         {
             _bulletType = value;
-            if (_bulletType == BulletType.friendly)
+            if (_bulletType == BulletType.Friendly)
             {
                 gameObject.layer = LayerMask.NameToLayer("FriendlyBullet");
-                GetComponent<Renderer>().material.color = Color.cyan;
+                _myRenderer.material.color = Color.cyan;
             }
-            else if (_bulletType == BulletType.hostile)
+            else if (_bulletType == BulletType.Hostile)
             {
                 gameObject.layer = LayerMask.NameToLayer("HostileBullet");
-                GetComponent<Renderer>().material.color = Color.red;
+                _myRenderer.material.color = Color.red;
             }
         }
     }

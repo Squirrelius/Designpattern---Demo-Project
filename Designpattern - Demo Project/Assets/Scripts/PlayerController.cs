@@ -16,6 +16,12 @@ public class PlayerController : MonoBehaviour, IDamagable
     private int _curHp;//current hitpoints of the player
     private int _maxHp = 100;//maximum hitpoints of the player
 
+    //Stats for bullets. This is not very elegant!
+    private int _bulletSpeed = 8;
+    private int _bulletDmg = 1;
+    private Bullet.BulletType _bulletType = Bullet.BulletType.Friendly;
+    //TODO reference a Bulletstat - ScriptableObject (= use flyweight)
+
     void Awake()
     {
         _animator = GetComponent<Animator>();
@@ -28,7 +34,7 @@ public class PlayerController : MonoBehaviour, IDamagable
     {
         if(Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Mouse0))
         {
-            Bullet.InstantiateBullet(transform.position + Vector3.up + Vector3.forward, transform.forward, 8, 1, Bullet.BulletType.friendly);
+            Bullet.InstantiateBullet(transform.position + Vector3.up + Vector3.forward, transform.forward, _bulletSpeed, _bulletDmg, _bulletType);
         }
     }
 
